@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        .formitems {
+            font-family: sans-serif;
+            background-color: whitesmoke;
+            border-radius: 20px;
+            border: 3px solid black;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+        form {
+            padding: 30px;
+            font-family: sans-serif;
+        }
+        body {
+            background-color: #060611;
+            padding: 40px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dormitory').change(function() {
+                var dormitoryId = $(this).val();
+                $.ajax({
+                    url: '/get_cubicles/' + dormitoryId,
+                    method: 'GET',
+                    success: function(data) {
+                        var cubicleSelect = $('#cubicle');
+                        cubicleSelect.empty();
+                        cubicleSelect.append('<option value="">Select Cubicle</option>');
+                        $.each(data.cubicles, function(index, cubicle) {
+                            cubicleSelect.append('<option value="' + cubicle.cubicle_id + '">' + cubicle.cubicle_number + '</option>');
+                        });
+                        $('#bed').empty().append('<option value="">Select Bed</option>'); // Clear beds if dormitory changes
+                    }
+                });
+            });
+
+            $('#cubicle').change(function() {
+                var cubicleId = $(this).val();
+                $.ajax({
+                    url: '/get_beds/' + cubicleId,
+                    method: 'GET',
+                    success: function(data) {
+                        var bedSelect = $('#bed');
+                        bedSelect.empty();
+                        bedSelect.append('<option value="">Select Bed</option>');
+                        $.each(data.beds, function(index, bed) {
+                            bedSelect.append('<option value="' + bed.bed_id + '">' + bed.bed_number + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <form action="{{ url_for('update_user_details', user_id=user['Admission_NO']) }}" method="post">
+        <div class="formitems">
+            <u><h1>UPDATE USER</h1><br></u>
+
+            <label for="fname">Enter First Name: </label>
+            <input type="text" name="fname" id="fname" value="{{ user.Fisrt_Name }}" required><br>
+
+            <br><label for="lname">Enter Last Name: </label>
+            <input type="text" name="lname" id="lname" value="{{ user.Last_Name }}" required><br>
+
+            <br><label for="class">Class:</label>
+            <input type="text" name="class_name" id="class_name" value="{{ user.Class }}" required><br>
+
+            <br><label for="Adm">Enter Admission Number: </label>
+            <input type="text" name="Adm" id="Adm" value="{{ user.Admission_NO }}" readonly><br>
+            <label for="amount_paid">Amount Paid: </label>
+            <input type="text" name="amount_paid" id="amount_paid">
+
+            <br><label for="dormitory">Dormitory:</label>
+            <select name="dormitory" id="dormitory" required>
+                {% for dorm in dormitories %}
+                <option value="{{ dorm.dormitory_id }}" {% if dorm.dormitory_id == user.dormitory_id %}selected{% endif %}>{{ dorm.dormitory_name }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="cubicle">Cubicle: </label><br>
+            <select id="cubicle" name="cubicle" required>
+                <option value="">Select Cubicle</option>
+                {% for cubicle in cubicles %}
+                <option value="{{ cubicle.cubicle_id }}" {% if cubicle.cubicle_id == user.cubicle_id %}selected{% endif %}>{{ cubicle.cubicle_number }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="bed">Bed: </label><br>
+            <select name="bed" id="bed" required>
+                <option value="">Select Bed</option>
+                {% for bed in beds %}
+                <option value="{{ bed.bed_id }}" {% if bed.bed_id == user.bed_id %}selected{% endif %}>{{ bed.bed_number }}</option>
+                {% endfor %}
+            </select><br>
+
+            <input type="submit" name="submit" id="submit">
+        </div>
+    </form>
+</center>
+</body>
+</html>

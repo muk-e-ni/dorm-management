@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display.html</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet"href="/css/dashboard.css">
+    <style>
+
+    body{
+        background-color:  #060611;
+    }
+          table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+   
+    </style>
+</head>
+<body>
+    <center> <H1 style="color: #e3e1e4;">DISPLAY STUDENTS</H1></center>
+
+
+<!-- <center> <H1>STUDENTS</H1></center>-->
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Class</th>
+            <th> Admission No.</th>
+            <th> Dormitory</th>
+
+            <th>Amount Paid</th>
+
+            <th>Balance</th>
+        </tr>
+        {% for member in members %}
+        <tbody>
+            <tr>
+                <td style="color: #e3e1e4;"> {{ member.Fisrt_Name }}</td> 
+                <td style="color: #e3e1e4;"> {{ member.Last_Name }}</td>
+                <td style="color: #e3e1e4;">{{member.Class}}</td>
+                <td style="color: #e3e1e4;">{{member.Admission_NO}}</td>
+                <td style="color: #e3e1e4;">{{ member.dormitory_name}}</td>
+                <td style="color: #e3e1e4;">{{ member.amount_paid}}</td>
+
+                <td style="color: #e3e1e4;">{{ member.balance}}</td>
+
+              
+      
+            </tr>
+        </tbody>
+        {% endfor %}
+
+        
+    </tbody>
+</table>
+
+   <center> <h2 style="color: #e3e1e4;">Delete Member</h2>
+    <form action="{{ url_for('del_user') }}" method="post"style="color: #e3e1e4;">
+        <label for="adm_delete">Enter Admission Number:</label>
+        <input type="text" id="adm_delete" name="adm_delete" required>
+        <button type="submit">Delete</button>
+    </form>
+   </center>
+
+    <center>
+    <h2 style="color: #e3e1e4;">Update Member</h2>
+    <form action="{{ url_for('updates') }}" method="post">
+        <label for="adm_update"style="color: #e3e1e4;">Enter Admission Number:</label>
+        <input type="text" id="adm_update" name="adm_update" required>
+        <button type="submit">Update</button>
+    </form>
+    </center>  
+</body>
+</html>

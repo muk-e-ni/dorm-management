@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Login Page</title>
+    <style>
+        body {
+            
+            font-family: Arial, sans-serif;
+            
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(/static/images/loginnnn.avif);
+
+
+        }
+
+        .logo{
+        position:static;
+        height: auto;
+        width: 130px;
+        left: 0px;
+        cursor: pointer;
+        padding-right: 5px;
+
+
+       }
+
+        .login-container {
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            padding-left: 100px;
+            margin-left: 100px;
+            padding-right: 100px;
+            margin-right: 100px;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            display: block;
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+        }
+        .login-btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+     
+        .forgot-password {
+            display: block;
+            text-decoration: underline;
+            margin-top:10px ;
+            text-align: center;
+            cursor: pointer;
+            width: 100px;
+            background-color: #0056b3;
+            height: 30px;
+            width: 150px;
+            padding-bottom: 1px;
+            padding-top: 5px;
+            border-radius: 10px;
+
+
+        }
+
+        .register-btn{
+            display: block;
+            text-decoration: underline;
+            margin-top:10px ;
+            text-align: center;
+            cursor: pointer;
+            width: 100px;
+            background-color: #0056b3;
+            height: 60px;
+            width: 150px;
+            padding-bottom: 1px;
+            padding-top: 10px;
+            border-radius: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <center><img src="" class="logo"></center>
+    
+    <center><div class="login-container">
+        <u><h2 style="color: #e2dddd;">LOGIN</h2></u>
+
+        {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li style="color: red;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/anotherlogin" method="POST"style="padding-top: 40px;">
+       
+        <label for="username"style="color: #e3e1e4;">Username</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password"style="color: #e3e1e4;">Password</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        
+        
+        <input type="submit" value="LOGIN"  class="login-btn">
+    </form>
+
+    <a href="/reset_password">
+       <br><center><span class="forgot-password" style="color: #e3e1e4;background-color: #0056b3;">Forgot Password?</span></center> 
+    </a>
+
+       <a href="/registration">
+        <br><center><span class="register-btn" style="color: #e3e1e4;">Not a member? Register here</span></center>
+       </a>
+    </div></center>
+
+
+
+
+
+
+
+</body>
+
+
+</html>

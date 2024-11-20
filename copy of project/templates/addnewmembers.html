@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .formitems {
+            font-family: sans-serif;
+            background-color: whitesmoke;
+            border-radius: 20px;
+            border: 3px solid black;
+            padding: 30px;
+        }
+        body {
+            background-color: #060611;
+            padding: 40px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dormitory').change(function() {
+                var dormitoryId = $(this).val();
+                $.ajax({
+                    url: '/get_cubicles/' + dormitoryId,
+                    method: 'GET',
+                    success: function(data) {
+                        var cubicleSelect = $('#cubicle');
+                        cubicleSelect.empty();
+                        cubicleSelect.append('<option value="">Select Cubicle</option>');
+                        $.each(data.cubicles, function(index, cubicle) {
+                            cubicleSelect.append('<option value="' + cubicle.cubicle_id + '">' + cubicle.cubicle_number + '</option>');
+                        });
+                    }
+                });
+            });
+
+            $('#cubicle').change(function() {
+                var cubicleId = $(this).val();
+                $.ajax({
+                    url: '/get_beds/' + cubicleId,
+                    method: 'GET',
+                    success: function(data) {
+                        var bedSelect = $('#bed');
+                        bedSelect.empty();
+                        bedSelect.append('<option value="">Select Bed</option>');
+                        $.each(data.beds, function(index, bed) {
+                            bedSelect.append('<option value="' + bed.bed_id + '">' + bed.bed_number + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <form action="/add_new" method="post">
+        <div class="formitems">
+            <u><h1>ADD NEW STUDENT</h1><br></u>
+            <label for="fname">Enter First Name:</label>
+            <input type="text" name="fname" id="fname" required><br>
+            <br>
+            <label for="lname">Enter Last Name:</label>
+            <input type="text" name="lname" id="lname" required><br>
+            <br>
+            <label for="class">Class:</label>
+            <select id="form" name="form">
+                <option value="form1">Form 1</option>
+                
+                <option value="form2">Form 1 x</option>
+                <option value="form3">Form 1 y</option>
+                <option value="form4">Form 1 z</option>
+
+                <option value="form2">Form 2</option>
+                
+                <option value="form2">Form 2 x</option>
+                <option value="form2">Form 2 y</option>
+                <option value="form2">Form 2 z</option>
+
+                
+                <option value="form3">Form 3</option>
+                
+                <option value="form3">Form 3 x</option>
+                <option value="form3">Form 3 y</option>
+                <option value="form3">Form 3 z</option>
+
+                
+                <option value="form4">Form 4</option>
+                
+                <option value="form4">Form 4 x</option>
+                <option value="form4">Form 4 y</option>
+                <option value="form4">Form 4 z</option>
+            </select>
+
+            <br>
+
+            <label for="Adm">Enter Admission Number:</label>
+            <input type="text" name="Adm" id="Adm" required><br>
+            <br>
+            <label for="dormitory">Dormitory:</label>
+            <select name="dormitory" id="dormitory" required>
+                {% for dorm in dormitories %}
+                <option value="{{ dorm.dormitory_id }}">{{ dorm.dormitory_name }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="cubicle">Cubicle:</label>
+            <select id="cubicle" name="cubicle" required>
+                <option value="">Select Cubicle</option>
+            </select><br>
+            <br>
+            <input type="submit" name="submit" id="submit" value="Register">
+        </div>
+    </form>
+</center>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet"href="/static/css/home.css">
+    <title>Home page</title>
+   
+<style>
+  .banner{
+    
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(/static/images/schooldormimage.avif);
+}
+
+
+
+.navbar{
+    width: 100%;
+    margin:auto;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #060611;
+    padding-left: 40%;
+
+
+}
+
+
+
+.navbar a{
+    text-decoration: none;
+    color:rgb(243, 246, 248);
+    text-transform: uppercase;
+    margin: 0 20px;
+    position: relative;
+   
+
+}
+.navbar a:hover {
+            background-color: transparent;
+            color: rgb(248, 248, 248);
+            text-decoration: underline;
+            transition: 0.5s;
+           
+
+        }
+
+.main{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-40%);
+    color: rgb(244, 248, 250);
+    
+
+}
+
+.content h1{
+    font-size: 70px;
+    margin-top: 80px;
+    color: rgb(244, 248, 250);
+
+   
+
+}
+
+.content h4{
+    margin: 20px auto;
+    font-weight: 100;
+
+}
+
+button{
+  color: rgb(231, 236, 240);
+    width: 100px;
+    padding: 6px ;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid rgb(217, 224, 226);
+    background-color: transparent;
+}
+button:hover{
+    background-color: #010101;
+    color: rgb(233, 236, 241);
+    border:2px solid white ;
+}
+
+.logo{
+  position: fixed;
+  height: auto;
+  width: 130px;
+  left: 0px;
+  cursor: pointer;
+  padding-right: 5px;
+
+}
+
+
+    </style>
+  </head>
+
+
+<body>
+   <div class="banner">
+      <div class="navbar">
+        <img src="/static/images/Navy White University Elegant Logo.jpg" class="logo">
+        <a href="/home">Home</a>
+        <a href="/anotherlogin">Login</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/dormitory_status">Dormitories</a>
+      
+      </div>
+
+      <div class="main">
+        <center><h1 style="color: #e3e1e4;">WELCOME TO MARABEL HIGH SCHOOL</h1>
+        <h4 style="color: #e3e1e4;">This is where we innovate and teach so as to be <br>the change that we want to see.</h4>
+        <h3 style="color: #e3e1e4;">Strive to Excel!</h3></center>
+       
+        <div>
+          <a href="/anotherlogin">
+            <center> <button type="button">LOGIN</button></center>
+          </a>
+        </div>
+
+      </div>
+
+      
+
+    </div>
+   
+   
+
+   
+
+
+
+ 
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

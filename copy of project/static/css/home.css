@@ -1,0 +1,111 @@
+
+  .banner{
+    
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(/school\ dorm\ image.avif);
+}
+
+
+
+.navbar{
+    width: 100%;
+    margin:auto;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #060611;
+    padding-left: 40%;
+
+
+}
+
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color:rgb(243, 246, 248);
+    text-transform: uppercase;
+}
+
+.navbar ul li::after{
+    content: '';
+    height: 2px;
+    width: 0;
+    background: #e3e1e4;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+
+}
+
+.navbar ul li:hover::after{
+    width: 100%;
+
+}
+
+.main{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-40%);
+    color: rgb(244, 248, 250);
+    
+
+}
+
+.content h1{
+    font-size: 70px;
+    margin-top: 80px;
+    color: rgb(244, 248, 250);
+
+   
+
+}
+
+.content h4{
+    margin: 20px auto;
+    font-weight: 100;
+
+}
+
+button{
+  color: rgb(231, 236, 240);
+    width: 100px;
+    padding: 6px ;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid rgb(217, 224, 226);
+    background-color: transparent;
+}
+button:hover{
+    background-color: #010101;
+    color: rgb(233, 236, 241);
+    border:2px solid white ;
+}
+
+.logo{
+  position: fixed;
+  height: auto;
+  width: 130px;
+  left: 0px;
+  cursor: pointer;
+  padding-right: 5px;
+
+}
+
+
+    
